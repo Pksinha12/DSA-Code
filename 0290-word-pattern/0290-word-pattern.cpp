@@ -21,7 +21,7 @@ public:
         {
             mp2[words[i]] = pattern[i];
         }
-        for (int i = 0; i < min(ps,strs); i++)
+        for (int i = 0; i < ps; i++)
         {
             if (mp1[pattern[i]] != words[i] or mp2[words[i]] != pattern[i])
                 return false;
