@@ -14,7 +14,7 @@ public:
         }
         int ps = pattern.size();
         int strs = words.size();
-        if (ps != j) return false;
+        if (ps != strs) return false;
         for (int i = 0; i < ps; i++)
         {
             mp1[pattern[i]] = words[i];
