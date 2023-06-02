@@ -5,7 +5,6 @@ public:
         unordered_map<char, string> mp1;
         unordered_map<string, char> mp2;
         stringstream ss(s);
-        int j = 0;
         string word;
         while(ss >> word)
         {
