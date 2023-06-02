@@ -16,10 +16,11 @@ public:
         for (int i = 0; i < ps; i++)
         {
             mp1[pattern[i]] = words[i];
+            mp2[words[i]] = pattern[i];
         }
         for (int i = 0; i < strs; i++)
         {
-            mp2[words[i]] = pattern[i];
+            
         }
         for (int i = 0; i < ps; i++)
         {
