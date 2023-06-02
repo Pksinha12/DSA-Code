@@ -10,7 +10,6 @@ public:
         while(ss >> word)
         {
             words.push_back(word);
-            j++;
         }
         int ps = pattern.size();
         int strs = words.size();
