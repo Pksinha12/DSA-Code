@@ -3,17 +3,31 @@ class Solution {
     int n, m, cnt = 0;
     vector<vector<int>> vis;
 
-    void dfs(int i, int j,const vector<vector<char>>& grid)
+    void bfs(int i, int j, const vector<vector<char>>& grid)
     {
+        queue<pair<int,int>> qt;
+        qt.push({i, j});
         vis[i][j] = 1;
-        vector<int> delrows = {-1, 0, 1, 0};
-        vector<int> delcols = {0, 1, 0, -1};
-        for (int k = 0; k < 4; k++)
+        
+        while (!qt.empty())
         {
-            int nrows = i + delrows[k];
-            int ncols = j + delcols[k];
-            if (nrows >= 0 and ncols >= 0 and nrows < n and ncols < m and grid[nrows][ncols] == '1' and !vis[nrows][ncols])
-                    dfs(nrows, ncols, grid);
+            int row = qt.front().first;
+            int col = qt.front().second;
+            
+            qt.pop();
+            vector<int> delrows = {-1, 0, 1, 0};
+            vector<int> delcols = {0, 1, 0, -1};
+            for (int k = 0; k < 4; k++)
+            {
+                int nrows = row + delrows[k];
+                int ncols = col + delcols[k];
+                if (nrows >= 0 and ncols >= 0 and nrows < n and ncols < m and grid[nrows][ncols] == '1' and !vis[nrows][ncols])
+                {
+                    qt.push({nrows, ncols});
+                    vis[nrows][ncols] = 1;
+                }
+                    
+            }
         }
         
     }
@@ -28,7 +42,7 @@ class Solution {
             {
                 if (grid[i][j] == '1' and !vis[i][j]) 
                 {
-                    dfs(i, j, grid);
+                    bfs(i, j, grid);
                     cnt++;
                 }
             }
