@@ -7,13 +7,13 @@ class Solution {
     {
         queue<pair<int,int>> qt;
         qt.push({i, j});
-        vis[i][j] = 1;
+        //vis[i][j] = 1;
         
         while (!qt.empty())
         {
             int row = qt.front().first;
             int col = qt.front().second;
-            
+            vis[row][col] = 1;
             qt.pop();
             vector<int> delrows = {-1, 0, 1, 0};
             vector<int> delcols = {0, 1, 0, -1};
