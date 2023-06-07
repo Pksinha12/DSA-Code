@@ -12,12 +12,8 @@ class Solution {
         {
             int nrows = i + delrows[k];
             int ncols = j + delcols[k];
-            if (nrows >= 0 and ncols >= 0 and nrows < n and ncols < m)
-            {
-                if (grid[nrows][ncols] == '1' and !vis[nrows][ncols]) 
+            if (nrows >= 0 and ncols >= 0 and nrows < n and ncols < m and grid[nrows][ncols] == '1' and !vis[nrows][ncols])
                     dfs(nrows, ncols, grid);
-            
-            }
         }
         
     }
