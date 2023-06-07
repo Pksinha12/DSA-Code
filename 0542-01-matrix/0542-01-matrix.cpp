@@ -9,7 +9,7 @@ public:
         {
             for (int j = 0; j < m; j++)
             {
-                if (!vis[i][j] and mat[i][j] == 0)
+                if (mat[i][j] == 0)
                 {
                     vis[i][j] = 1;
                     q.push({{i,j},0});
@@ -18,7 +18,7 @@ public:
         }
         vector<int> delrow = {-1, 0, 1, 0};
         vector<int> delcol = {0, 1, 0, -1};
-        int dmin = INT_MAX;
+        
         while(!q.empty())
         {
             int row = q.front().first.first;
@@ -31,7 +31,7 @@ public:
                 int nrow = row + delrow[k];
                 int ncol = col + delcol[k];
                 
-                if (nrow >= 0 and ncol >= 0 and nrow < n and ncol < m and mat[nrow][ncol] == 1 and !vis[nrow][ncol])
+                if (nrow >= 0 and ncol >= 0 and nrow < n and ncol < m and !vis[nrow][ncol])
                 {
                     q.push({{nrow, ncol},dis+1});
                     vis[nrow][ncol] = 1;
