@@ -1,9 +1,10 @@
 class Solution {
-public:
-    void dfs(int i, int j, vector<vector<int>>& vis,vector<vector<char>>& grid)
+    private:
+    int n, m, cnt = 0;
+    vector<vector<int>> vis;
+
+    void dfs(int i, int j,const vector<vector<char>>& grid)
     {
-        int n = grid.size();
-        int m = grid[0].size();
         vis[i][j] = 1;
         vector<int> delrows = {-1, 0, 1, 0};
         vector<int> delcols = {0, 1, 0, -1};
@@ -14,24 +15,24 @@ public:
             if (nrows >= 0 and ncols >= 0 and nrows < n and ncols < m)
             {
                 if (grid[nrows][ncols] == '1' and !vis[nrows][ncols]) 
-                    dfs(nrows, ncols, vis, grid);
+                    dfs(nrows, ncols, grid);
             
             }
         }
         
     }
-    int numIslands(vector<vector<char>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-        vector<vector<int>> vis(n,vector<int>(m,0));
-        int cnt = 0;
+    public:
+    int numIslands(const vector<vector<char>>& grid) {
+        n = grid.size();
+        m = grid[0].size();
+        vis.resize(n, vector<int>(m,0));
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
                 if (grid[i][j] == '1' and !vis[i][j]) 
                 {
-                    dfs(i, j, vis, grid);
+                    dfs(i, j, grid);
                     cnt++;
                 }
             }
