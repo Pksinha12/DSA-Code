@@ -19,7 +19,7 @@ public:
         vector<int> delrow = {-1, 0, 1, 0};
         vector<int> delcol = {0, 1, 0, -1};
         
-        while(!q.empty())
+        while(q.empty()==false)
         {
             int row = q.front().first.first;
             int col = q.front().first.second;
@@ -31,7 +31,7 @@ public:
                 int nrow = row + delrow[k];
                 int ncol = col + delcol[k];
                 
-                if (nrow >= 0 and ncol >= 0 and nrow < n and ncol < m and !vis[nrow][ncol])
+                if (nrow >= 0 and ncol >= 0 and nrow < n and ncol < m and vis[nrow][ncol]==0)
                 {
                     q.push({{nrow, ncol},dis+1});
                     vis[nrow][ncol] = 1;
