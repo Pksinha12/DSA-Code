@@ -1,21 +1,18 @@
 class Solution {
     private:
-    vector<int> delrow = {-1, 0, 1, 0};
-    vector<int> delcol = {0, 1, 0, -1};
     int rsz, csz;
     void dfs(int row, int col, vector<vector<int>>& grid)
     {
-        grid[row][col] = 2; 
-        for (int k = 0; k < 4; k++)
-        {
-            int nrow = row + delrow[k];
-            int ncol = col + delcol[k];
-            if (nrow >= 0 and ncol >= 0 and nrow < rsz and ncol < csz and grid[nrow][ncol] == 1)
-            {
-                dfs(nrow, ncol, grid);
-            }
-                
-        } 
+
+        if (row < 0 or col < 0 or row >= rsz or col >= csz or grid[row][col] != 1) return;
+        
+        grid[row][col] = 2;
+        
+        dfs(row, col+1, grid);
+        dfs(row+1, col, grid);
+        dfs(row, col-1, grid);
+        dfs(row-1, col, grid);
+        
     }
 public:
     int numEnclaves(vector<vector<int>>& grid) 
