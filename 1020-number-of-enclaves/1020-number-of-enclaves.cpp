@@ -1,9 +1,11 @@
 class Solution {
     private:
+    vector<int> delrow = {-1, 0, 1, 0};
+    vector<int> delcol = {0, 1, 0, -1};
+    int rsz, csz;
     void dfs(int row, int col, vector<vector<int>>& grid)
     {
-        int rsz = grid.size();
-        int csz = grid[0].size();
+
         if (row < 0 or col < 0 or row >= rsz or col >= csz or grid[row][col] != 1) return;
         
         grid[row][col] = 2;
@@ -17,8 +19,8 @@ class Solution {
 public:
     int numEnclaves(vector<vector<int>>& grid) 
     {
-        int rsz = grid.size();
-        int csz = grid[0].size();
+        rsz = grid.size();
+        csz = grid[0].size();
         for (int i = 0; i < csz; i++)
         {
             if (grid[0][i] == 1) dfs(0, i, grid);
