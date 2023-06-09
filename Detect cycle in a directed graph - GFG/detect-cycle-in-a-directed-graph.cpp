@@ -30,16 +30,45 @@ class Solution {
     // Function to detect cycle in a directed graph.
     bool isCyclic(int V, vector<int> adj[]) 
     {
-        pathVis.resize(V, 0);
-        vis.resize(V,0);
-        for (int i = 0; i < V; i++)
-        {
-            if (!vis[i]) 
-            {
-                if (check(i, adj)==true) return true;
-            }
-        }
-        return false;
+        vector<int> vis(V,0);
+	    vector<int> toposort;
+	    vector<int> indegree(V, 0);
+	    
+	    for (int i = 0; i < V; i++)
+	    {
+	        for (auto it : adj[i])
+	        {
+	            indegree[it]++;
+	        }
+	    }
+	    queue<int> q;
+	    for (int i = 0; i < V; i++)
+	    {
+	        if (indegree[i] == 0) 
+	        {
+	            q.push(i);
+	            vis[i] = 1;
+	        }
+	    }
+	    
+	    while (!q.empty())
+	    {
+	        int node = q.front();
+	        toposort.push_back(node);
+	        q.pop();
+	        
+	        for (auto i : adj[node])
+	        {
+	            indegree[i]--;
+	            if (!vis[i] and indegree[i] == 0)
+	            {
+	                q.push(i);
+	                vis[i] = 1;
+	            }
+	        }
+	    }
+	    if (toposort.size() != V) return true;
+	    return false;
     }
 };
 
