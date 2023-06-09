@@ -1,5 +1,5 @@
 class Solution {
-    public:
+    private:
     void dfs(int row, int col, vector<vector<int>>& grid)
     {
         int rsz = grid.size();
