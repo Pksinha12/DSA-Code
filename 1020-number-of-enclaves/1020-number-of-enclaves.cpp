@@ -4,8 +4,7 @@ class Solution {
     {
         int rsz = grid.size();
         int csz = grid[0].size();
-        if (row < 0 or col < 0 or row >= rsz or col >= csz ) return;
-        if (grid[row][col] != 1) return;
+        if (row < 0 or col < 0 or row >= rsz or col >= csz or grid[row][col] != 1) return;
         
         grid[row][col] = 2;
         
