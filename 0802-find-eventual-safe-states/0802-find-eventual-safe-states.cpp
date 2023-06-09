@@ -5,6 +5,7 @@ private:
     vector<int> check;
     vector<int> pathVis;
     vector<int> safeNodes;
+    
     bool dfsCheck(int i, vector<vector<int>>& graph)
     {
         vis[i] = 1;
@@ -17,19 +18,18 @@ private:
             {
                 if (dfsCheck(neighbour, graph) == true) 
                 {
-                    //check[i] = 0;
                     return true;
                 }
                     
             }
             else if (pathVis[neighbour])
             {
-                //check[i] = 0;
                 return true;
             }
         }
         check[i] = 0;
         pathVis[i] = 0;
+        
         return false;
     }
 public:
@@ -39,12 +39,10 @@ public:
         vis.resize(V, 0);
         check.resize(V, 0);
         pathVis.resize(V, 0);
+        
         for (int i = 0; i < V; i++)
         {
-            if (!vis[i])
-            {
-                dfsCheck(i, graph);
-            }
+            if (!vis[i]) dfsCheck(i, graph);
         }
         for (int i = 0; i < V; i++)
         {
