@@ -46,7 +46,7 @@ public:
         }
         for (int i = 0; i < V; i++)
         {
-            if (check[i] == 0) safeNodes.push_back(i);
+            if (pathVis[i] == 0) safeNodes.push_back(i);
         }
         return safeNodes;
     }
