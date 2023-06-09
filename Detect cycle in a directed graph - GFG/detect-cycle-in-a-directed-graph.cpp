@@ -5,8 +5,9 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   private:
-      
-      bool check(int start, vector<int> adj[], vector<int>& vis,vector<int>& pathVis)
+      vector<int> vis;
+      vector<int> pathVis;
+      bool check(int start, vector<int> adj[])
       {
         vis[start] = 1;
         pathVis[start] = 1;
@@ -14,7 +15,7 @@ class Solution {
         {
             if (!vis[neighbour])
             {
-                if (check(neighbour, adj, vis, pathVis)==true) return true;
+                if (check(neighbour, adj)==true) return true;
             }
             else if (pathVis[neighbour] == 1)
             {
@@ -29,13 +30,13 @@ class Solution {
     // Function to detect cycle in a directed graph.
     bool isCyclic(int V, vector<int> adj[]) 
     {
-        vector<int> pathVis(V, 0);
-        vector<int> vis(V,0);
+        pathVis.resize(V, 0);
+        vis.resize(V,0);
         for (int i = 0; i < V; i++)
         {
             if (!vis[i]) 
             {
-                if (check(i, adj, vis, pathVis)==true) return true;
+                if (check(i, adj)==true) return true;
             }
         }
         return false;
