@@ -8,7 +8,7 @@ private:
     bool dfsCheck(int i, vector<vector<int>>& graph)
     {
         vis[i] = 1;
-        check[i] = 0;
+        check[i] = 1;
         pathVis[i] = 1;
         
         for(auto neighbour : graph[i])
@@ -28,7 +28,7 @@ private:
                 return true;
             }
         }
-        check[i] = 1;
+        check[i] = 0;
         pathVis[i] = 0;
         return false;
     }
@@ -48,7 +48,7 @@ public:
         }
         for (int i = 0; i < V; i++)
         {
-            if (check[i] == 1) safeNodes.push_back(i);
+            if (check[i] == 0) safeNodes.push_back(i);
         }
         return safeNodes;
     }
