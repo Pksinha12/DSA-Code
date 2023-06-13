@@ -4,18 +4,20 @@ public:
         int n = heights.size();
         int m = heights[0].size();
 
-        set <pair<int, pair<int,int>>> pq;
+        priority_queue< pair<int,pair<int,int>>,
+        vector< pair<int,pair<int,int>> >,
+        greater< pair<int,pair<int,int>> > >pq;
         vector<vector<int>> minDiff(n, vector<int>(m, 1e9));
         
-        pq.insert({0, {0, 0}});
+        pq.push({0, {0, 0}});
         minDiff[0][0] = 0;
         
         vector<int> delcol = {-1, 0, 1, 0};
         vector<int> delrow = {0, 1, 0, -1};
         while (!pq.empty())
         {
-            auto it = *pq.begin();
-            pq.erase(it);
+            auto it = pq.top();
+            pq.pop();
             int diff = it.first;
             int row = it.second.first;
             int col = it.second.second;
@@ -32,7 +34,7 @@ public:
                     if (maxEffort < minDiff[nrow][ncol])
                     {
                         minDiff[nrow][ncol] = maxEffort;
-                        pq.insert({minDiff[nrow][ncol], {nrow, ncol}});
+                        pq.push({maxEffort, {nrow, ncol}});
                     }
                 }
             }
