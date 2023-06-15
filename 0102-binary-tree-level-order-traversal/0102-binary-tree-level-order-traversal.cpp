@@ -26,10 +26,10 @@ public:
             {
                 TreeNode* node = q.front();
                 q.pop();
-                
+                int val = node->val;
                 if (node->left != NULL) q.push(node->left);
                 if (node->right != NULL) q.push(node->right);
-                levels.push_back(node->val);
+                levels.push_back(val);
             }
             ans.push_back(levels);   
         }
