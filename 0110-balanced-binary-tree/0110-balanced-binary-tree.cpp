@@ -14,8 +14,6 @@ private:
     int helper(TreeNode* root)
     {
         if (root == NULL) return 0;
-        
-        
         int lh = helper(root->left);
         if (lh == -1) return -1;
         int rh = helper(root->right);
@@ -27,8 +25,6 @@ private:
     }
 public:
     bool isBalanced(TreeNode* root) {
-        if (root == NULL) return true;
-        if (helper(root) > 0) return true;
-        return false;
+        return helper(root) != -1;
     }
 };
