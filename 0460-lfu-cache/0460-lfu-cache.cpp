@@ -96,7 +96,6 @@ public:
                 curSize--; 
             }
             curSize++; 
-            // new value has to be added who is not there previously 
             minFreq = 1; 
             List* listFreq = new List(); 
             if(freqListMap.find(minFreq) != freqListMap.end()) {
@@ -109,10 +108,3 @@ public:
         }
     }
 };
-
-/**
- * Your LFUCache object will be instantiated and called as such:
- * LFUCache* obj = new LFUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
