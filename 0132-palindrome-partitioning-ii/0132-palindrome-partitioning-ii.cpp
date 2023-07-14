@@ -5,9 +5,9 @@ class Solution
         {
             int n = s.size();
             if (n == 0 or n == 1) return n-1;
-            int i = 0;
             vector<int> dp(n,-1);
-            return helper(i, s, dp)-1;
+            return helper(0, s, dp)-1;
+         
         }
         int helper(int ind, string& s, vector<int>& dp)
         {
