@@ -22,7 +22,8 @@ public:
     }
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        //vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        vector<int> next(2,0), curr(2,0);
         // Tabulation
         // write down base case
         // assigned zero to dp hence no need to write base case
@@ -34,15 +35,16 @@ public:
                 int profits = 0;
                 if (buy)
                 {
-                   profits =  max(prices[i] + dp[i+1][0], 0 + dp[i+1][1]);
+                   profits =  max(prices[i] + next[0], 0 + next[1]);
                 }
                 else
                 {
-                   profits = max(-prices[i]+dp[i+1][1],  0 + dp[i+1][0]);
+                   profits = max(-prices[i]+next[1],  0 + next[0]);
                 }
-                dp[i][buy] = profits;
+                curr[buy] = profits;
             }
+            next = curr;
         }
-        return dp[0][0];
+        return curr[0];
     }
 };
