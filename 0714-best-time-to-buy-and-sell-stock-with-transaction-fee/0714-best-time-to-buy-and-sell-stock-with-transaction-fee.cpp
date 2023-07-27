@@ -21,6 +21,8 @@ public:
         int n = prices.size();
         vector<vector<int>> dp(n+1, vector<int>(2,0));
         // Tabulation 
+        // Space optimization
+        vector<int> next(2, 0), curr(2, 0);
         int profits = 0;
         for (int i = n-1; i >= 0; i--)
         {
@@ -28,15 +30,16 @@ public:
             {
                 if (b)
                 {
-                    profits = max(prices[i]-fee+dp[i+1][0],dp[i+1][1]);
+                    profits = max(prices[i]-fee+next[0],next[1]);
                 }
                 else
                 {
-                    profits = max(-prices[i]+dp[i+1][1],dp[i+1][0]);
+                    profits = max(-prices[i]+next[1],next[0]);
                 }
-                dp[i][b] = profits;
+                curr[b] = profits;
             }
+            next = curr;
         }
-        return dp[0][0] ;
+        return curr[0] ;
     }
 };
