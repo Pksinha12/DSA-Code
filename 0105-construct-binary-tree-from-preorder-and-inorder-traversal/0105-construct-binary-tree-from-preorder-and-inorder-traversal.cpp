@@ -1,41 +1,23 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
+    TreeNode *f(int ps, int pe, int is, int ie, vector<int> &preorder, vector<int> &inorder, unordered_map<int, int> &mp)
+    {
+        if (is > ie or ps > pe) return NULL;
+        TreeNode *root = new TreeNode(preorder[ps]);
+        int ind = mp[root->val];
+        int len = ind - is;
+        root->left = f(ps+1,ps+len, is, ind-1, preorder, inorder, mp);
+        root->right = f(ps+len+1, pe, ind+1, ie, preorder, inorder, mp);
+        return root;
+    }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) 
     {
+        int n = inorder.size();
         unordered_map<int, int> mp;
-        for (int i = 0; i < inorder.size(); i++)
+        for (int i = 0; i < n; i++)
         {
             mp[inorder[i]] = i;
         }
-        int inStart = 0;
-        int inEnd = inorder.size()-1;
-        int preStart = 0;
-        int preEnd = preorder.size()-1;
-        TreeNode* root = helper(inStart, inEnd, preStart, preEnd,mp, preorder, inorder);
-        return root;
-    }
-    TreeNode* helper(int inStart, int inEnd, int preStart, int preEnd,unordered_map<int, int>& mp, vector<int>& preorder, vector<int>& inorder)
-    {
-        if (inStart > inEnd || preStart > preEnd) return NULL;
-        
-        TreeNode* root = new TreeNode(preorder[preStart]);
-        
-        int rootIdx = mp[root->val]; // giving index of root in the inorder.
-        int numsLeft = rootIdx - inStart; // numbers of element to the left of root 
-        
-        root->left = helper(inStart, rootIdx-1, preStart+1, preStart+numsLeft, mp, preorder, inorder);
-        root->right = helper(rootIdx+1, inEnd, preStart+numsLeft+1, preEnd,  mp, preorder, inorder);
-        return root;
+        return f(0, n-1, 0, n-1, preorder, inorder, mp);
     }
 };
