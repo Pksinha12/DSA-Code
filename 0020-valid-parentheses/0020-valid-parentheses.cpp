@@ -12,7 +12,7 @@ public:
         // movement from right to left;
         // use stack to search for every closing bracket
         int n = s.size();
-        stack <int> st;
+        stack <char> st;
         for (int i = n-1; i >= 0; i--)
         {
             if (s[i] == ')' or s[i] == '}' or s[i] == ']')
